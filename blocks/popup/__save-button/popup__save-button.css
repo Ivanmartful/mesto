@@ -16,7 +16,7 @@
 }
 
 .popup__save-button:hover {
-    background: rgb(51, 51, 51);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 880px) {
