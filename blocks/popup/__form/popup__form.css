@@ -3,4 +3,6 @@
     padding: 0;
     max-width: 358px;
     border: 0;
+    display: flex;
+    flex-direction: column;
 }

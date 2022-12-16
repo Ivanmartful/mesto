@@ -11,7 +11,7 @@
 @media (max-width: 879px) {
     .elements {
         max-width: 581px;
-        padding: 36px 0 0 0;
+        padding-top: 36px;
         grid-template-columns: auto auto;
     }
 }

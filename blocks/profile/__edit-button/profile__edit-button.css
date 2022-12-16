@@ -2,7 +2,7 @@
     margin: 15px 0 0 18px;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #FFF;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
-    background-color: #000000;
+    background-color: transparent;
     transition: opacity ease-in-out 0.4s;
 }
 
@@ -22,6 +22,8 @@
     .profile__edit-button {
         width: 18px;
         height: 18px;
-        margin: 8px 0 0 10px;
+        margin-top: 8px;
+        margin-left: 10px;
+        background-size: 8px 8px;
     }
 }

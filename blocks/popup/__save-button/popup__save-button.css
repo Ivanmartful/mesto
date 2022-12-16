@@ -2,7 +2,7 @@
     margin: 48px 0 0;
     width: 358px;
     height: 50px;
-    background: #000000;
+    background: #000;
     border-radius: 2px;
     border: none;
     font-style: normal;
@@ -16,7 +16,7 @@
 }
 
 .popup__save-button:hover {
-    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 880px) {
