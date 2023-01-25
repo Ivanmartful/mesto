@@ -59,6 +59,7 @@ function createCard(item) {
 
     cardName.textContent = item.name;
     cardImg.src = item.link;
+    cardImg.alt = item.name;
 
     cardElement.querySelector('.element__button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__button_active');
@@ -88,6 +89,7 @@ function addCard(evt) {
     evt.preventDefault();
     const cardInfo = {};
     cardInfo.name = cardNameInput.value;
+    cardInfo.alt = cardNameInput.value;
     cardInfo.link = cardLinkInput.value;
     const newCard = createCard(cardInfo);
     elementsList.prepend(newCard);
