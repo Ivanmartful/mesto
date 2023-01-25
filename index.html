@@ -26,7 +26,9 @@
             <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements" aria-label="фотокарточки">
-            <article class="element">
+
+
+            <!--<article class="element">
                 <img src="./images/pic1.png" alt="Карачаевск Храм" class="element__image">
                 <div class="element__description">
                     <h2 class="element__title">Карачаевск</h2>
@@ -67,9 +69,19 @@
                     <h2 class="element__title">Домбай</h2>
                     <button type="button" class="element__button"></button>
                 </div>
-            </article>
+            </article>-->
         </section>
     </main>
+    <template class="element-template">
+        <li class="element">
+            <button type="button" class="element__delete-button"></button>
+            <img src="" alt="Фото" class="element__image">
+            <div class="element__description">
+                <h2 class="element__title"></h2>
+                <button type="button" class="element__button"></button>
+            </div>
+        </li>
+      </template>
     <footer class="footer">
         <p class="footer__text">© 2022 Mesto Russia</p>
     </footer>
@@ -83,6 +95,26 @@
                     name="description" placeholder="Описание" required>
                 <input type="submit" class="popup__save-button">
             </form>
+            <button type="button" class="popup__close-button"></button>
+        </div>
+    </div>
+    <div class="popup popup_name_card">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" name="editForm">
+                <input type="text" class="popup__input popup__input_type_card-name" id="names" name="names"
+                    placeholder="Название" required>
+                <input type="text" class="popup__input popup__input_type_card-link" id="description"
+                    name="description" placeholder="Ссылка на картинку" required>
+                <input type="submit" class="popup__save-button">
+            </form>
+            <button type="button" class="popup__close-button"></button>
+        </div>
+    </div>
+    <div class="popup popup_view_card">
+        <div class="popup__card">
+            <h2 class="popup__card-title"></h2>
+            <img src="" alt="" class="popup__image">
             <button type="button" class="popup__close-button"></button>
         </div>
     </div>
