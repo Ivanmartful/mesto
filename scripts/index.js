@@ -93,8 +93,7 @@ function addCard(evt) {
     const newCard = createCard(cardInfo);
     elementsList.prepend(newCard);
     closePopup(cardPopup);
-    cardNameInput.value = '';
-    cardLinkInput.value = '';
+    evt.target.reset();
 };
 
 function openPopup(popup) {
