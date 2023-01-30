@@ -98,11 +98,32 @@ function addCard(evt) {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keyup', closeEscFunc);
+    document.addEventListener('click', closePopupClickOnOverlay);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keyup', closeEscFunc);
+    document.removeEventListener('click', closePopupClickOnOverlay);
 };
+
+function closeEscFunc(evt) {
+  evt.preventDefault();
+  if (evt.key === 'Escape' || evt.keyCode === 27) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+};
+
+function closePopupClickOnOverlay(popup) {
+  const openedPopup = document.querySelector('.popup_opened');
+  openedPopup.addEventListener('click', evt => {
+    if (evt.currentTarget === evt.target) {
+      closePopup(openedPopup);
+    }
+  });
+}
 
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();

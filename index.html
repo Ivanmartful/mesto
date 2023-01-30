@@ -38,33 +38,41 @@
                 <button type="button" class="element__button"></button>
             </div>
         </li>
-      </template>
+    </template>
     <footer class="footer">
         <p class="footer__text">© 2022 Mesto Russia</p>
     </footer>
     <div class="popup popup_name_profile">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="profileForm">
-                <input type="text" class="popup__input popup__input_type_names" id="name" name="name"
-                    placeholder="Имя" required>
-                <input type="text" class="popup__input popup__input_type_description" id="description"
-                    name="description" placeholder="Описание" required>
-                <input type="submit" class="popup__save-button">
-            </form>
+            
+                <form class="popup__form" name="profileForm" novalidate>
+                    <input type="text" class="popup__input popup__input_type_names" id="name-input" name="name"
+                        placeholder="Имя" minlength="2" maxlength="40" required>
+                    <span class="popup__input-error name-input-error">test</span>
+                    <input type="text" class="popup__input popup__input_type_description" id="description-input"
+                        name="description" placeholder="Описание" minlength="2" maxlength="200" required>
+                    <span class="popup__input-error description-input-error">test2</span>
+                    <input type="submit" class="popup__save-button">
+                </form>
+            
             <button type="button" class="popup__close-button"></button>
         </div>
     </div>
     <div class="popup popup_name_card">
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__form" name="editForm">
-                <input type="text" class="popup__input popup__input_type_card-name" id="names" name="names"
-                    placeholder="Название" required>
-                <input type="text" class="popup__input popup__input_type_card-link" id="imglink"
-                    name="description" placeholder="Ссылка на картинку" required>
-                <input type="submit" class="popup__save-button">
-            </form>
+            
+                <form class="popup__form" name="editForm" novalidate>
+                    <input type="text" class="popup__input popup__input_type_card-name" id="names-input" name="names"
+                        placeholder="Название" minlength="2" maxlength="40" required>
+                    <span class="popup__input-error names-input-error">test3</span>
+                    <input type="url" class="popup__input popup__input_type_card-link" id="imglink-input" name="description"
+                        placeholder="Ссылка на картинку" required>
+                    <span class="popup__input-error imglink-input-error">test4</span>
+                    <input type="submit" class="popup__save-button">
+                </form>
+            
             <button type="button" class="popup__close-button"></button>
         </div>
     </div>
@@ -75,6 +83,7 @@
             <button type="button" class="popup__close-button"></button>
         </div>
     </div>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 
