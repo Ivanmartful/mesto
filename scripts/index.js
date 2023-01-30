@@ -23,6 +23,8 @@ const popupName = viewPopup.querySelector('.popup__card-title');
 const elementsList = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element-template').content.querySelector('.element');
 
+const escCode = 27;
+
 const initialCards = [
     {
       name: 'Архыз',
@@ -110,20 +112,21 @@ function closePopup(popup) {
 
 function closeEscFunc(evt) {
   evt.preventDefault();
-  if (evt.key === 'Escape' || evt.keyCode === 27) {
+  if (evt.key === 'Escape' || evt.keyCode === escCode) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 };
 
-function closePopupClickOnOverlay(popup) {
-  const openedPopup = document.querySelector('.popup_opened');
-  openedPopup.addEventListener('click', evt => {
-    if (evt.currentTarget === evt.target) {
+function closePopupClickOnOverlay() { 
+  document.addEventListener('click', evt => { 
+    if (evt.target.classList.contains("popup_opened")) { 
+      const openedPopup = document.querySelector('.popup_opened'); 
       closePopup(openedPopup);
-    }
-  });
-}
+    } 
+  }); 
+} 
+
 
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
@@ -141,12 +144,16 @@ editButton.addEventListener('click', function () {
     openPopup(profilePopup);
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
+    checkButton(profilePopup, configValidation);
 });
 
 cardFormElement.addEventListener('submit', addCard);
 
 renderCards();
 
-addButton.addEventListener('click', () => openPopup(cardPopup));
+addButton.addEventListener('click', () => {
+  openPopup(cardPopup);
+  checkButton(cardPopup, configValidation);
+});
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
