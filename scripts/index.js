@@ -28,13 +28,12 @@ const escCode = 27;
 
 const cardList = document.querySelector(cardConfig.selectorCardList);
 
-const ValidationCardForm = new FormValidator(configValidation, cardFormElement);
-const ValidationProfileForm = new FormValidator(configValidation, profileForm);
+const validationCardForm = new FormValidator(configValidation, cardFormElement);
+const validationProfileForm = new FormValidator(configValidation, profileForm);
 
 for (const item of initialCards) {
-    const card = new Card(cardConfig.selectorCardTemplate, item);
-    const element = card.getCard();
-    cardList.append(element);
+    const card = createCard(item)
+    cardList.append(card);
 }
 
 function createCard(newCard) {
@@ -55,7 +54,7 @@ function addCard(evt) {
     evt.target.reset();
 };
 
-export function openViewPopup(name, link) {
+function openViewPopup(name, link) {
     popupImage.src = link;
     popupImage.alt = name;
     popupName.textContent = name;
@@ -107,18 +106,20 @@ editButton.addEventListener('click', function () {
     openPopup(profilePopup);
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
-    ValidationProfileForm.checkButton();
+    validationProfileForm.toggleButtonState();
+    validationProfileForm.resetFormValidation();
 });
 
 cardFormElement.addEventListener('submit', addCard);
 
 addButton.addEventListener('click', () => {
     openPopup(cardPopup);
-    ValidationCardForm.checkButton();
+    validationCardForm.toggleButtonState();
+    validationCardForm.resetFormValidation();
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-ValidationCardForm.enableValidation();
+validationCardForm.enableValidation();
 
-ValidationProfileForm.enableValidation();
+validationProfileForm.enableValidation();

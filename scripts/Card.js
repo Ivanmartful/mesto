@@ -1,7 +1,5 @@
-import {openViewPopup} from './newindex.js';
-
 export default class Card {
-    constructor(template, item) {
+    constructor(template, item, openViewPopup) {
         this._template = template;
         this._name = item.name;
         this._link = item.link;
@@ -35,9 +33,11 @@ export default class Card {
 
     getCard() {
         this._element = this._getCardFromTemplate();
-        this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        this._cardImage = this._element.querySelector('.element__image');
+        this._cardName = this._element.querySelector('.element__title');
+        this._cardName.textContent = this._name;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
         this._addEventListeners();
         return this._element;
     }
