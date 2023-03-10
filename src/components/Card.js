@@ -1,12 +1,14 @@
 export default class Card {
-    constructor(template, item, openViewPopup) {
-        this._template = template;
+    constructor({item, handleCardClick}, template) {
         this._name = item.name;
         this._link = item.link;
+        this._handleCardClick = handleCardClick;
+
+        this._template = template;
 
         this._deleteCard = this._deleteCard.bind(this);
         this._toggleLike = this._toggleLike.bind(this);
-        this._openViewPopup = openViewPopup;
+        this._openPopup = this._openPopup.bind(this);
     }
 
     _getCardFromTemplate() {
@@ -20,7 +22,7 @@ export default class Card {
     _addEventListeners() {
         this._element.querySelector('.element__delete-button').addEventListener('click', this._deleteCard);
         this._element.querySelector('.element__button').addEventListener('click', this._toggleLike);
-        this._element.querySelector('.element__image').addEventListener('click', () => this._openViewPopup(this._name, this._link));
+        this._element.querySelector('.element__image').addEventListener('click', this._openPopup);
     }
 
     _deleteCard() {
@@ -29,6 +31,10 @@ export default class Card {
 
     _toggleLike() {
         this._element.querySelector('.element__button').classList.toggle('element__button_active');
+    }
+
+    _openPopup() {
+        this._handleCardClick(this._name, this._link);
     }
 
     getCard() {

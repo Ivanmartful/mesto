@@ -5,19 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-    <script type="module" src="./scripts/index.js" defer></script>
 
     <title>Место</title>
 </head>
 
 <body class="page">
     <header class="header">
-        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="Логотип Место" class="header__logo">
     </header>
     <main>
         <section class="profile">
-            <img src="./images/avatar.png" alt="Аватар" class="profile__avatar">
+            <img src="<%=require('./images/avatar.png')%>" alt="Аватар" class="profile__avatar">
             <div class="profile__info">
                 <div class="profile__text">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -53,7 +51,7 @@
                         placeholder="Имя" minlength="2" maxlength="40" required>
                     <span class="popup__input-error name-input-error">test</span>
                     <input type="text" class="popup__input popup__input_type_description" id="description-input"
-                        name="description" placeholder="Описание" minlength="2" maxlength="200" required>
+                        name="job" placeholder="Описание" minlength="2" maxlength="200" required>
                     <span class="popup__input-error description-input-error">test2</span>
                     <input type="submit" class="popup__save-button">
                 </form>
@@ -66,10 +64,10 @@
             <h2 class="popup__title">Новое место</h2>
             
                 <form class="popup__form" name="editForm" novalidate>
-                    <input type="text" class="popup__input popup__input_type_card-name" id="names-input" name="names"
+                    <input type="text" class="popup__input popup__input_type_card-name" id="names-input" name="name"
                         placeholder="Название" minlength="2" maxlength="40" required>
                     <span class="popup__input-error names-input-error">test3</span>
-                    <input type="url" class="popup__input popup__input_type_card-link" id="imglink-input" name="description"
+                    <input type="url" class="popup__input popup__input_type_card-link" id="imglink-input" name="link"
                         placeholder="Ссылка на картинку" required>
                     <span class="popup__input-error imglink-input-error">test4</span>
                     <input type="submit" class="popup__save-button" disabled>
