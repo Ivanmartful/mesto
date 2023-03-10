@@ -4,7 +4,6 @@ export default class FormValidator {
         this._formElement = formElement;
 
         this._inputList = Array.from(this._formElement.querySelectorAll(this._configValidation.inputSelector));
-        this._formList = Array.from(document.querySelectorAll(this._configValidation.formSelector));
         this._submitButton = this._formElement.querySelector(this._configValidation.submitButtonSelector);
     }
 
@@ -44,15 +43,13 @@ export default class FormValidator {
                 this.toggleButtonState();
             });
         });
+        this._formElement.addEventListener('submit', function (evt) {
+            evt.preventDefault();
+        });
     };
 
     enableValidation() {
-        this._formList.forEach((formElement) => {
-            formElement.addEventListener('submit', function (evt) {
-                evt.preventDefault();
-            });
-            this._setEventListeners();
-        });
+        this._setEventListeners();
     };
 
     _hasInvalidInput() {

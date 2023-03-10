@@ -14,17 +14,17 @@ const validationProfileForm = new FormValidator(configValidation, profileConfig.
 function createCard(newCard) {
     const card = new Card({
         item: newCard, 
-        handleCardClick: () => {
-            popupWithImage.open(newCard)
+        handleCardClick: (name, link) => {
+            popupWithImage.open({name, link})
         }
     }, cardConfig.selectorCardTemplate);
-    return card;
+    return card.getCard();
 }
 
 const cardList = new Section({
     items: initialCards,
     renderer: (item)=> { 
-        cardList.addItem(createCard(item).getCard()) 
+        cardList.addItem(createCard(item)) 
     }}, cardConfig.selectorCardList);
 
 cardList.renderItems();
@@ -43,7 +43,7 @@ const profilePopupForm = new PopupWithForm(profileConfig.profilePopupSelector, {
 profilePopupForm.setEventListeners();
 
 const cardPopupForm = new PopupWithForm(addCardConfig.cardPopupSelector, { handleFormSubmit: (item) => {
-    cardList.addItem(createCard(item).getCard());
+    cardList.addItem(createCard(item));
 }});
 
 cardPopupForm.setEventListeners();

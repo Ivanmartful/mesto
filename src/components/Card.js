@@ -20,9 +20,9 @@ export default class Card {
     }
 
     _addEventListeners() {
-        this._element.querySelector('.element__delete-button').addEventListener('click', this._deleteCard);
-        this._element.querySelector('.element__button').addEventListener('click', this._toggleLike);
-        this._element.querySelector('.element__image').addEventListener('click', this._openPopup);
+        this._deleteButton.addEventListener('click', this._deleteCard);
+        this._likeButton.addEventListener('click', this._toggleLike);
+        this._cardImage.addEventListener('click', this._openPopup);
     }
 
     _deleteCard() {
@@ -30,7 +30,7 @@ export default class Card {
     }
 
     _toggleLike() {
-        this._element.querySelector('.element__button').classList.toggle('element__button_active');
+        this._likeButton.classList.toggle('element__button_active');
     }
 
     _openPopup() {
@@ -41,6 +41,9 @@ export default class Card {
         this._element = this._getCardFromTemplate();
         this._cardImage = this._element.querySelector('.element__image');
         this._cardName = this._element.querySelector('.element__title');
+        this._likeButton = this._element.querySelector('.element__button');
+        this._deleteButton = this._element.querySelector('.element__delete-button');
+
         this._cardName.textContent = this._name;
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
