@@ -5,4 +5,5 @@
     height: 120px;
     border-radius: 60px;
     object-fit: cover;
+    transition: opacity ease-in-out 0.4s;
 }
