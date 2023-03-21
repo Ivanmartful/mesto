@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({item, handleCardClick, handleLikeClick, handleDeleteIconClick}, userId, template, api) {
+    constructor({item, handleCardClick, handleLikeClick, handleDeleteIconClick}, userId, template) {
         this._name = item.name;
         this._link = item.link;
         this._likes = item.likes;
@@ -13,10 +13,7 @@ export default class Card {
 
         this._template = template;
 
-        this._api = api;
-
         this.deleteCard = this.deleteCard.bind(this);
-        this.toggleLike = this.toggleLike.bind(this);
         this._openPopup = this._openPopup.bind(this);
     }
 
@@ -38,23 +35,17 @@ export default class Card {
         this._element.remove();
     }
 
-    toggleLike() {
-        if(!(this._likeButton.classList.contains('element__button_active'))) {
-            this._api.like(this._id)
-                .then((item) => {
-                    this._likeButton.classList.add('element__button_active');
-                    this._likeNumber.textContent = item.likes.length;
-                })
-                .catch((err) => {console.log(err)})
-        } else {
-            this._api.deleteLike(this._id)
-                .then((item) => {
-                    this._likeButton.classList.remove('element__button_active');
-                    this._likeNumber.textContent = item.likes.length;
-                })
-        }
+    checkLikeStatus() {
+        return this._likes.some((item) => item._id === this._userId);
+    }
 
-        this._likeButton.classList.toggle('element__button_active');
+    _toggleLike() {
+        this._renderLikeNumber();
+        if(this.checkLikeStatus()) {
+            this._likeButton.classList.add('element__button_active');
+        } else {
+            this._likeButton.classList.remove('element__button_active');
+        }
     }
 
     _renderDeleteButton() {
@@ -63,10 +54,9 @@ export default class Card {
         }
     }
 
-    _renderLikeButton() {
-        if(this._likes.find((item) => item._id === this._userId)) {
-            this._likeButton.classList.add('element__button_active');
-        }
+    renderLikeButton(item) {
+        this._likes = item.likes;
+        this._toggleLike();
     }
 
     _renderLikeNumber() {
@@ -88,8 +78,8 @@ export default class Card {
         this._cardName.textContent = this._name;
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
-        this._renderLikeButton();
-        this._renderLikeNumber();
+
+        this._toggleLike();
         this._renderDeleteButton();
         this._addEventListeners();
         return this._element;

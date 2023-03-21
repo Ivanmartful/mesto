@@ -38,9 +38,21 @@ function createCard(newCard) {
             deleteAcceptPopup.open();
         },
         handleLikeClick: () => {
-            card.toggleLike();
+            if(!card.checkLikeStatus()) {
+                api.like(newCard._id)
+                    .then((item) => {
+                        card.renderLikeButton(item);
+                    })
+                    .catch((err) => {console.log(err)})
+            } else {
+                api.deleteLike(newCard._id)
+                    .then((item) => {
+                        card.renderLikeButton(item);
+                    })
+                    .catch((err) => {console.log(err)})
+            }
         }
-    }, userId, cardConfig.selectorCardTemplate, api);
+    }, userId, cardConfig.selectorCardTemplate);
     return card.getCard();
 }
 
